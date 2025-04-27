@@ -1,0 +1,15 @@
+{
+    "name": "dwep-d/card",
+    "description": "minha versão do verificador de cartão de credito. (um meme que assistir no tiktok)",
+    "autoload": {
+        "psr-4": {
+            "DwepD\\Card\\": "App/"
+        }
+    },
+    "authors": [
+        {
+            "name": "dwep1337"
+        }
+    ],
+    "require": {}
+}

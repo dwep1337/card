@@ -13,5 +13,4 @@ $dotenv->load();
 //routers
 $router->add('GET', '/', 'HomeController@index');
 
-
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

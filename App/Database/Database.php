@@ -6,15 +6,15 @@ use PDO, PDOException;
 
 class Database
 {
-    //TODO : Add environment variables for database connection
     private PDO $connection;
-    private string $host = 'localhost';
-    private string $user = 'root';
-    private string $password = '';
-    private string $database = 'securecard';
+    private string $host;
+    private string $user;
+    private string $password;
+    private string $database;
 
     public function __construct()
     {
+        $this->loadEnvConnection();
         $this->connect();
     }
 
@@ -31,5 +31,13 @@ class Database
         }catch (PDOException $e){
             die("Database connection fail: " . $e->getMessage());
         }
+    }
+
+    private function loadEnvConnection(): void
+    {
+        $this->host = $_ENV['DB_HOST'];
+        $this->user = $_ENV['DB_USER'];
+        $this->password = $_ENV['DB_PASSWORD'];
+        $this->database = $_ENV['DB_DATABASE'];
     }
 }

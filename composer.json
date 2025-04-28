@@ -3,7 +3,7 @@
     "description": "minha versão do verificador de cartão de credito. (um meme que assistir no tiktok)",
     "autoload": {
         "psr-4": {
-            "DwepD\\Card\\": "App/"
+            "App\\": "App/"
         }
     },
     "authors": [

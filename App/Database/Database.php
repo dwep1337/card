@@ -4,9 +4,9 @@ namespace App\Database;
 
 use PDO, PDOException;
 
-
 class Database
 {
+    //TODO : Add environment variables for database connection
     private PDO $connection;
     private string $host = 'localhost';
     private string $user = 'root';

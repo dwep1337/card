@@ -11,5 +11,7 @@
             "name": "dwep1337"
         }
     ],
-    "require": {}
+    "require": {
+      "ext-pdo": "*"
+    }
 }

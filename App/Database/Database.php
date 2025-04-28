@@ -35,9 +35,9 @@ class Database
 
     private function loadEnvConnection(): void
     {
-        $this->host = $_ENV['DB_HOST'];
-        $this->user = $_ENV['DB_USER'];
-        $this->password = $_ENV['DB_PASSWORD'];
-        $this->database = $_ENV['DB_DATABASE'];
+        $this->host = $_ENV['DATABASE_HOST'];
+        $this->user = $_ENV['DATABASE_USER'];
+        $this->password = $_ENV['DATABASE_PASSWORD'];
+        $this->database = $_ENV['DATABASE_NAME'];
     }
 }

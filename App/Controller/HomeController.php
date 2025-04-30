@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Controller;
+
 class HomeController
 {
     public function index(): void {
-        echo "Hello, World!";
+        include 'views/home/home.php';
     }
 }

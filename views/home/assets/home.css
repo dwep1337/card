@@ -1,0 +1,376 @@
+/* ===== VARIÁVEIS E ESTILOS GERAIS ===== */
+:root {
+    --black: #121212;
+    --white: #ffffff;
+    --gray: #f5f5f5;
+    --dark-gray: #333333;
+    --gold-light: #ddb574;
+    --gold-medium: #c79852;
+    --gold-dark: #b38745;
+    --metal-dark: #a67c3d;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ===== LAYOUT DIVIDIDO ===== */
+.split-screen {
+    display: flex;
+    min-height: 100vh;
+}
+
+.left-side {
+    flex: 1;
+    background-color: var(--black);
+    color: var(--white);
+    padding: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.right-side {
+    flex: 1;
+    background-color: var(--white);
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-wrapper {
+    max-width: 500px;
+}
+
+.card-container {
+    width: 100%;
+    max-width: 420px;
+}
+
+/* ===== TIPOGRAFIA ===== */
+.display-4 {
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.lead {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 40px;
+}
+
+.features-list li {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.features-list i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+    color: var(--white);
+}
+
+/* ===== CARTÃO DE CRÉDITO ===== */
+.credit-card-wrapper {
+    perspective: 1000px;
+    margin-bottom: 40px;
+}
+
+.credit-card {
+    width: 100%;
+    height: 260px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+    cursor: pointer;
+}
+
+.credit-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.credit-card-front,
+.credit-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    background: var(--dark-gray);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+}
+
+.credit-card-back {
+    transform: rotateY(180deg);
+    justify-content: flex-end;
+}
+
+.credit-card-logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+/* ===== CHIP DO CARTÃO ===== */
+.credit-card-chip {
+    width: 50px;
+    height: 35px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 5px 5px 5px 5px / 50% 50% 50% 50%;
+    background:
+            linear-gradient(135deg,
+            rgba(255,255,255,0.3) 0%,
+            rgba(255,255,255,0) 20%,
+            rgba(255,255,255,0.3) 40%,
+            rgba(255,255,255,0) 60%,
+            rgba(255,255,255,0.3) 80%,
+            rgba(255,255,255,0) 100%),
+            linear-gradient(135deg, var(--gold-light) 0%, var(--gold-medium) 50%, var(--gold-dark) 100%);
+}
+
+.credit-card-chip::before {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 15px;
+    height: 15px;
+    background: var(--dark-gray);
+    transform: rotate(45deg);
+    z-index: 2;
+}
+
+.credit-card-chip::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 20px;
+    background:
+            linear-gradient(180deg,
+            transparent 0%, transparent 20%,
+            var(--metal-dark) 20%, var(--metal-dark) 25%,
+            transparent 25%, transparent 45%,
+            var(--metal-dark) 45%, var(--metal-dark) 50%,
+            transparent 50%, transparent 70%,
+            var(--metal-dark) 70%, var(--metal-dark) 75%,
+            transparent 75%, transparent 95%,
+            var(--metal-dark) 95%, var(--metal-dark) 100%),
+            linear-gradient(90deg,
+            transparent 0%, transparent 20%,
+            var(--metal-dark) 20%, var(--metal-dark) 25%,
+            transparent 25%, transparent 45%,
+            var(--metal-dark) 45%, var(--metal-dark) 50%,
+            transparent 50%, transparent 70%,
+            var(--metal-dark) 70%, var(--metal-dark) 75%,
+            transparent 75%, transparent 95%,
+            var(--metal-dark) 95%, var(--metal-dark) 100%);
+    background-size: 100% 33.33%, 33.33% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.8;
+}
+
+/* ===== INPUTS DO CARTÃO ===== */
+.card-input {
+    background: transparent;
+    border: none;
+    color: var(--white);
+    font-family: 'Courier New', monospace;
+    width: 100%;
+    outline: none;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    transition: border-color 0.3s;
+}
+
+.card-input:focus {
+    border-bottom-color: var(--white);
+}
+
+.number-input {
+    margin: 0 0 15px;
+    align-self: center;
+    width: 90%;
+}
+
+.number-input .card-input {
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    text-align: center;
+    padding: 8px 5px;
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+.credit-card-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    width: 100%;
+}
+
+.name-input,
+.expiry-input {
+    width: 48%;
+}
+
+.credit-card-info label {
+    display: block;
+    font-size: 0.65rem;
+    opacity: 0.7;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.name-input .card-input,
+.expiry-input .card-input {
+    font-size: 0.85rem;
+    padding: 6px 0;
+}
+
+/* ===== VERSO DO CARTÃO ===== */
+.credit-card-stripe {
+    height: 50px;
+    background: var(--black);
+    margin: 25px -25px;
+}
+
+.credit-card-cvv {
+    background: var(--white);
+    color: var(--black);
+    padding: 8px 15px;
+    border-radius: 4px;
+    width: fit-content;
+    margin-left: auto;
+    margin-top: 20px;
+}
+
+.credit-card-cvv label {
+    display: block;
+    font-size: 0.7rem;
+    opacity: 0.7;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--black);
+}
+
+.cvv-input-container {
+    display: flex;
+    align-items: center;
+}
+
+.credit-card-cvv .card-input {
+    color: var(--black);
+    text-align: right;
+    width: 50px;
+    border-bottom-color: rgba(0, 0, 0, 0.3);
+    padding: 5px 0;
+}
+
+.btn-toggle-cvv {
+    background: none;
+    border: none;
+    color: var(--black);
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 0.9rem;
+}
+
+/* ===== BOTÃO E RESULTADO ===== */
+.btn-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#btnVerificar {
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    padding: 15px 30px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 420px; /* mesma largura máxima do cartão */
+}
+
+#btnVerificar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+#resultado {
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 992px) {
+    .split-screen {
+        flex-direction: column;
+    }
+
+    .left-side, .right-side {
+        padding: 40px 20px;
+    }
+
+    .left-side {
+        order: 2;
+    }
+
+    .right-side {
+        order: 1;
+    }
+
+    .content-wrapper {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .credit-card {
+        height: 230px;
+        padding: 20px;
+    }
+
+    .number-input .card-input {
+        font-size: 1rem;
+        letter-spacing: 2px;
+    }
+
+    .name-input .card-input,
+    .expiry-input .card-input {
+        font-size: 0.75rem;
+    }
+}

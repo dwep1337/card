@@ -1,0 +1,161 @@
+/* ===== VARIÁVEIS E ESTILOS GERAIS ===== */
+:root {
+    --black: #121212;
+    --white: #ffffff;
+    --gray: #f5f5f5;
+    --dark-gray: #333333;
+    --gold-light: #ddb574;
+    --gold-medium: #c79852;
+    --gold-dark: #b38745;
+    --metal-dark: #a67c3d;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ===== LAYOUT DIVIDIDO ===== */
+.split-screen {
+    display: flex;
+    min-height: 100vh;
+}
+
+.left-side {
+    flex: 1;
+    background-color: var(--black);
+    color: var(--white);
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.right-side {
+    flex: 1;
+    background-color: var(--white);
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-wrapper {
+    max-width: 500px;
+    width: 100%;
+}
+
+.card-container {
+    width: 100%;
+    max-width: 420px;
+    background: var(--gray);
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== TIPOGRAFIA ===== */
+.display-4 {
+    font-weight: 700;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    letter-spacing: 1.5px;
+}
+
+.lead {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    opacity: 0.9;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+/* ===== FORMULÁRIO ===== */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--dark-gray);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 12px 15px;
+    margin-bottom: 25px;
+    border: 1.5px solid var(--dark-gray);
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: var(--gold-medium);
+    box-shadow: 0 0 8px var(--gold-medium);
+}
+
+/* ===== BOTÃO ===== */
+.btn-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#btnLogin {
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    padding: 15px 30px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 420px;
+}
+
+#btnLogin:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 992px) {
+    .split-screen {
+        flex-direction: column;
+    }
+
+    .left-side,
+    .right-side {
+        padding: 40px 20px;
+    }
+
+    .left-side {
+        order: 2;
+    }
+
+    .right-side {
+        order: 1;
+    }
+
+    .content-wrapper {
+        max-width: 100%;
+    }
+}

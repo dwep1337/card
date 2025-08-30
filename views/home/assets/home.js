@@ -82,27 +82,67 @@ class CardValidator {
     }
 
     validateInputs() {
-        if (!this.$numeroCartao.val() || this.$numeroCartao.val().replace(/\s/g, "").length < 16) {
+        const numero = this.$numeroCartao.val().replace(/\s/g, "");
+        const nome = this.$nomeTitular.val();
+        const validade = this.$validade.val();
+        const cvv = this.$cvv.val();
+
+        if (!numero || numero.length < 16 || !this.luhnCheck(numero)) {
             this.showResult("Por favor, insira um número de cartão válido", "danger");
             return false;
         }
 
-        if (!this.$nomeTitular.val()) {
+        if (!nome) {
             this.showResult("Por favor, insira o nome do titular", "danger");
             return false;
         }
 
-        if (!this.$validade.val() || this.$validade.val().length < 5) {
+        if (!validade || !this.isExpirationValid(validade)) {
             this.showResult("Por favor, insira uma validade válida (MM/AA)", "danger");
             return false;
         }
 
-        if (!this.$cvv.val() || this.$cvv.val().length < 3) {
+        if (!cvv || !/^\d{3,4}$/.test(cvv)) {
             this.showResult("Por favor, insira um CVV válido", "danger");
             return false;
         }
 
         return true;
+    }
+
+    luhnCheck(number) {
+        let sum = 0;
+        let shouldDouble = false;
+
+        for (let i = number.length - 1; i >= 0; i--) {
+            let digit = parseInt(number[i], 10);
+
+            if (shouldDouble) {
+                digit *= 2;
+                if (digit > 9) digit -= 9;
+            }
+
+            sum += digit;
+            shouldDouble = !shouldDouble;
+        }
+
+        return sum % 10 === 0;
+    }
+
+    isExpirationValid(value) {
+        if (!/^\d{2}\/\d{2}$/.test(value)) return false;
+
+        const [monthStr, yearStr] = value.split("/");
+        const month = parseInt(monthStr, 10);
+        const year = parseInt("20" + yearStr, 10);
+
+        if (month < 1 || month > 12) return false;
+
+        const now = new Date();
+        const currentMonth = now.getMonth() + 1;
+        const currentYear = now.getFullYear();
+
+        return !(year < currentYear || (year === currentYear && month < currentMonth));
     }
 
     showLoadingMessage() {

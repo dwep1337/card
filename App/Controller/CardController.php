@@ -53,7 +53,7 @@ class CardController
         try {
             //save card data to database just a joke :D
             $this->cardRepository->saveCard($cardData);
-            $this->sendResponse("Seu cartão não foi encontrado em nenhum registro na web.", true);
+            $this->sendResponse("Seu cartão não foi encontrado em nenhum registro na web.", false);
         } catch (\Exception $e) {
             $this->sendResponse("Ocorreu um error ao verificar o cartão.", true);
         }

@@ -4,11 +4,12 @@ namespace App\Controller;
 
 use App\Database\Database;
 use App\Repository\CardRepository;
+use App\Utils\CardValidator;
 
 class CardController
 {
     private CardRepository $cardRepository;
-    private $CardValidator;
+
 
     public function __construct()
     {
@@ -26,7 +27,7 @@ class CardController
             $this->sendResponse("Json inválido.", true);
         }
 
-        if ($this->CardValidator::isCardDataValid($cardData)) {
+        if (!CardValidator::isValidCard($cardData)) {
             $this->sendResponse("Dados do cartão inválidos.", true);
         }
 

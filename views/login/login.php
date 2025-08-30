@@ -1,9 +1,9 @@
 <?php
-include 'header.php';
+include 'includes/header.php';
 
 function saudacaoBrasilia(): string
 {
-    $hora = (new DateTime('now', new DateTimeZone('America/Sao_Paulo')))->format('H');
+    $hora = new DateTime('now', new DateTimeZone('America/Sao_Paulo'))->format('H');
     return match (true) {
         $hora >= 5 && $hora < 12 => 'Bom dia',
         $hora >= 12 && $hora < 18 => 'Boa tarde',
@@ -36,4 +36,4 @@ function saudacaoBrasilia(): string
             </div>
         </div>
     </div>
-<?php include 'footer.php' ?>
+<?php include 'includes/footer.php' ?>

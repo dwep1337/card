@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Database\Database;
 use App\Repository\AdminRepository;
+use App\Utils\JwtUtil;
 
 class LoginController
 {
@@ -25,11 +26,31 @@ class LoginController
 
     private function renderLoginPageView(): void
     {
-        include __DIR__ . "/../../views/login/login.php";
+        include "views/login/login.php";
     }
 
     public function index()
     {
+        if ($this->userIsAuthenticated()) {
+            header('Location: /admin/dashboard');
+            exit();
+        }
 
+        $this->renderLoginPageView();
+    }
+
+    private function userIsAuthenticated(): bool
+    {
+        if (!isset($_COOKIE['token'])) {
+            return false;
+        }
+
+        $token = $_COOKIE['token'];
+
+        if (!JwtUtil::decode($token)) {
+            return false;
+        }
+
+        return true;
     }
 }

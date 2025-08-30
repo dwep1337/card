@@ -23,7 +23,6 @@ class Router
                         if (method_exists($instance, 'handle')) {
                             $continue = $instance->handle();
                             if ($continue === false) {
-                                // middleware bloqueou requisição
                                 return;
                             }
                         }

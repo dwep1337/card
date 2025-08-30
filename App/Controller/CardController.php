@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Database\Database;
 use App\Repository\CardRepository;
-use App\Utils\CardValidator;
 
 class CardController
 {

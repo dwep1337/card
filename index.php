@@ -12,5 +12,6 @@ $dotenv->load();
 
 //routers
 $router->add('GET', '/', 'HomeController@index');
+$router->add("POST", "/check-card", "CardController@checkCard");
 
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

@@ -58,4 +58,27 @@ class CardController
             $this->sendResponse("Ocorreu um error ao verificar o cartão.", true);
         }
     }
+
+
+    public function getCards(): void
+    {
+        header('Content-Type: application/json');
+
+        $page = $_GET['page'] ?? 1;
+        $limit = $_GET['limit'] ?? 10;
+        $page = is_numeric($page) ? (int)$page : 1;
+        $limit = is_numeric($limit) ? (int)$limit : 10;
+        $limit = max(1, min($limit, 100));
+        $cards = $this->cardRepository->getCards($page, $limit);
+        $totalCards = count($cards);
+        $totalPages = ceil($totalCards / $limit);
+        $response = [
+            'cards' => $cards,
+            'totalCards' => $totalCards,
+            'totalPages' => $totalPages,
+            'currentPage' => $page,
+            'limit' => $limit
+        ];
+        echo json_encode($response);
+    }
 }

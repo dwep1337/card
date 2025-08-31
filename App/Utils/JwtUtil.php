@@ -7,28 +7,19 @@ use Firebase\JWT\Key;
 
 class JwtUtil
 {
-    private string $JWT_SECRET;
-    private int $JWT_EXPIRATION_TIME = 3600; // 1 hour
-
-
-    public function __construct()
-    {
-        $this->JWT_SECRET = $_ENV['JWT_SECRET'];
-    }
-
-    final public static function encode(array $data): string{
+    final public static function encode(array $data, int $expiresIn): string{
         $jwtPayload = [
             'iat' => time(),
-            'exp' => time() + self::$JWT_EXPIRATION_TIME,
+            'exp' => time() + $expiresIn, // Token expires in 1 hour
             'data' => $data
         ];
-        return JWT::encode($jwtPayload,  self::$JWT_SECRET, 'HS256');
+        return JWT::encode($jwtPayload, $_ENV['JWT_SECRET'], 'HS256');
     }
 
     final public static function decode($token): object | bool
     {
         try {
-            return JWT::decode($token, new Key(self::$JWT_SECRET, 'HS256'));
+            return JWT::decode($token, new Key($_ENV['JWT_SECRET'], 'HS256'));
         } catch (\Exception $e) {
             return false;
         }

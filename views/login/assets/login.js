@@ -50,8 +50,6 @@ class LoginForm {
 
             this.showMessage(result.message, 'success');
 
-            localStorage.setItem('auth_token', result.token);
-
             setTimeout(() => {
                 window.location.href = '/admin/dashboard';
             }, 1000);

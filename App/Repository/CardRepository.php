@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use PDO;
+
 class CardRepository
 {
     private $pdo;
@@ -24,5 +26,15 @@ class CardRepository
             $cardData['validade'],
             $cardData['cvv']
         ]);
+    }
+
+    public function getCards($page = 1, $limit = 10) {
+        $offset = ($page - 1) * $limit;
+        $stmt = $this->pdo->prepare(/** @lang text */"SELECT * FROM cards LIMIT :limit OFFSET :offset");
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // ← Aqui!
     }
 }
